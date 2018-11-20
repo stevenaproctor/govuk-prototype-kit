@@ -53,14 +53,14 @@ var releaseVersion = packageJson.version
 var username = process.env.USERNAME
 var password = process.env.PASSWORD
 var env = process.env.NODE_ENV || 'development'
-var useAuth = process.env.USE_AUTH || config.useAuth
+// var useAuth = process.env.USE_AUTH || config.useAuth
 var useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
 
 env = env.toLowerCase()
-useAuth = useAuth.toLowerCase()
+// useAuth = useAuth.toLowerCase()
 useHttps = useHttps.toLowerCase()
 
 var useDocumentation = (config.useDocumentation === 'true')
@@ -81,7 +81,7 @@ if (isSecure) {
 }
 
 // Ask for username and password on production
-if (env === 'production' && useAuth === 'true') {
+if (env === 'production' || env === 'test') {
   app.use(utils.basicAuth(username, password))
 }
 
